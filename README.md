@@ -20,7 +20,7 @@ The project began with setting up the development environment and defining the t
 
 ## Development Process
 
-The main script, `app2.py`, was developed to handle the following tasks:
+The main script, `app5.py`, was developed to handle the following tasks:
 
 * Load a satellite image for the given coordinates.
 * Use the OpenRouter API with GPT-4o to detect the rooftop and estimate its area.
@@ -32,7 +32,7 @@ The initial approach was to fetch satellite imagery dynamically using APIs like 
 
 ## Project Structure
 
-* `app2.py`: The main script containing the tool's logic, including image loading, rooftop detection, solar potential calculation, and Gradio interface.
+* `app5.py`: The main script containing the tool's logic, including image loading, rooftop detection, solar potential calculation, and Gradio interface.
 * `images/`: A directory containing the satellite image (e.g., `27.81_78.8667.png` for Agra, India, or a sample image like `37.7749_-122.4194.png` for San Francisco).
 * `README.txt`: The project documentation (this file).
 
@@ -52,7 +52,7 @@ The initial approach was to fetch satellite imagery dynamically using APIs like 
     * **Cause**: The free tier credits were exhausted due to multiple test requests, as image analysis consumes more credits than text-only requests.
     * **Solution**:
         * Recommended adding more credits to the OpenRouter account to proceed with real API calls.
-        * For submission purposes, optionally mocked the API response in `app2.py` to demonstrate the tool's workflow. The mock response used was:
+        * For submission purposes, optionally mocked the API response in `app5.py` to demonstrate the tool's workflow. The mock response used was:
             ```python
             def detect_rooftop(image):
                 mock_response = {
@@ -66,7 +66,7 @@ The initial approach was to fetch satellite imagery dynamically using APIs like 
 
 ## Final Implementation
 
-After facing the challenges above, the final implementation used a locally saved image (e.g., `27.81_78.8667.png`) instead of fetching satellite imagery dynamically. The `app2.py` script was updated to load the image from the `images/` directory, and the OpenRouter API call was optionally mocked to bypass the 402 error. The Gradio interface allows users to input coordinates (e.g., 27.81, 78.8667) and an electricity rate (e.g., 0.104 $/kWh), and the tool displays the image along with a detailed analysis, including rooftop area, solar potential, and recommendations.
+After facing the challenges above, the final implementation used a locally saved image (e.g., `27.81_78.8667.png`) instead of fetching satellite imagery dynamically. The `app5.py` script was updated to load the image from the `images/` directory, and the OpenRouter API call was optionally mocked to bypass the 402 error. The Gradio interface allows users to input coordinates (e.g., 27.81, 78.8667) and an electricity rate (e.g., 0.104 $/kWh), and the tool displays the image along with a detailed analysis, including rooftop area, solar potential, and recommendations.
 
 The tool calculates solar potential based on the rooftop area (e.g., 120 m² from the mock response), assuming a solar efficiency of 20% (200 W/m²), and provides metrics like solar potential in kW, number of panels, annual energy production, installation cost, annual savings, and payback period. It also generates recommendations on solar panel technology, installation process, maintenance, cost analysis, industry regulations, and market trends.
 
