@@ -2,57 +2,57 @@
 
 ## Project Journey Overview
 
-[cite_start]The goal of this project was to develop a tool to assess the solar potential of a house's rooftop using satellite imagery and AI vision, as part of an internship project to demonstrate AI applications in the solar industry. [cite_start]The tool was designed to analyze a rooftop image, estimate its area, calculate solar energy potential, and provide detailed recommendations for solar panel installation, including ROI and industry insights. [cite_start]The target location was Agra, India (coordinates 27.81, 78.8667), but challenges with satellite imagery and API access required adjustments to complete the project.
+The goal of this project was to develop a tool to assess the solar potential of a house's rooftop using satellite imagery and AI vision, as part of an internship project to demonstrate AI applications in the solar industry. [cite_start]The tool was designed to analyze a rooftop image, estimate its area, calculate solar energy potential, and provide detailed recommendations for solar panel installation, including ROI and industry insights. The target location was Agra, India (coordinates 27.81, 78.8667), but challenges with satellite imagery and API access required adjustments to complete the project.
 
 ## Initial Steps
 
-[cite_start]The project began with setting up the development environment and defining the tool's functionality. [cite_start]The plan was to fetch satellite imagery for the given coordinates, use an AI model (via OpenRouter and GPT-4o) to detect the rooftop, and then calculate solar potential using a custom algorithm. [cite_start]A Gradio interface was chosen to allow users to input coordinates and electricity rates and view the results.
+The project began with setting up the development environment and defining the tool's functionality. The plan was to fetch satellite imagery for the given coordinates, use an AI model (via OpenRouter and GPT-4o) to detect the rooftop, and then calculate solar potential using a custom algorithm. A Gradio interface was chosen to allow users to input coordinates and electricity rates and view the results.
 
 ## Virtual Environment Creation
 
-1.  [cite_start]**Set Up a Virtual Environment**: To ensure a clean development environment, a virtual environment was created using the following commands:
+1.  **Set Up a Virtual Environment**: To ensure a clean development environment, a virtual environment was created using the following commands:
     ```bash
     python -m venv venv
     source venv/bin/activate
     # On Windows: venv\Scripts\activate
     ```
-2.  [cite_start]**Install Dependencies**: The required Python libraries were installed using pip: `pip install gradio requests Pillow`. [cite_start]These libraries were needed for the Gradio interface (`gradio`), API calls to OpenRouter (`requests`), and image processing (`Pillow`).
+2.  **Install Dependencies**: The required Python libraries were installed using pip: `pip install gradio requests Pillow`. These libraries were needed for the Gradio interface (`gradio`), API calls to OpenRouter (`requests`), and image processing (`Pillow`).
 
 ## Development Process
 
-[cite_start]The main script, `app2.py`, was developed to handle the following tasks:
+The main script, `app2.py`, was developed to handle the following tasks:
 
-* [cite_start]Load a satellite image for the given coordinates.
-* [cite_start]Use the OpenRouter API with GPT-4o to detect the rooftop and estimate its area.
-* [cite_start]Calculate solar potential, including energy production, number of panels, installation cost, annual savings, and payback period.
-* [cite_start]Generate detailed recommendations on solar panel technology, installation, maintenance, ROI, regulations, and market trends.
-* [cite_start]Display the results through a Gradio interface.
+* Load a satellite image for the given coordinates.
+* Use the OpenRouter API with GPT-4o to detect the rooftop and estimate its area.
+* Calculate solar potential, including energy production, number of panels, installation cost, annual savings, and payback period.
+* Generate detailed recommendations on solar panel technology, installation, maintenance, ROI, regulations, and market trends.
+* Display the results through a Gradio interface.
 
-[cite_start]The initial approach was to fetch satellite imagery dynamically using APIs like MapTiler, but challenges arose, leading to adjustments in the implementation.
+The initial approach was to fetch satellite imagery dynamically using APIs like MapTiler, but challenges arose, leading to adjustments in the implementation.
 
 ## Project Structure
 
-* [cite_start]`app2.py`: The main script containing the tool's logic, including image loading, rooftop detection, solar potential calculation, and Gradio interface.
-* [cite_start]`images/`: A directory containing the satellite image (e.g., `27.81_78.8667.png` for Agra, India, or a sample image like `37.7749_-122.4194.png` for San Francisco).
-* [cite_start]`README.txt`: The project documentation (this file).
+* `app2.py`: The main script containing the tool's logic, including image loading, rooftop detection, solar potential calculation, and Gradio interface.
+* `images/`: A directory containing the satellite image (e.g., `27.81_78.8667.png` for Agra, India, or a sample image like `37.7749_-122.4194.png` for San Francisco).
+* `README.txt`: The project documentation (this file).
 
 ## Challenges Faced
 
 1.  **Satellite Imagery Issues**
-    * [cite_start]**Objective**: The goal was to fetch high-resolution satellite imagery (approximately 1m/pixel) for Agra, India (coordinates 27.81, 78.8667) to analyze rooftops.
+    * **Objective**: The goal was to fetch high-resolution satellite imagery (approximately 1m/pixel) for Agra, India (coordinates 27.81, 78.8667) to analyze rooftops.
     * **Sources Tried**:
-        * [cite_start]MapTiler: Encountered a `404 Client Error: Not Found`, even after correcting the URL structure. [cite_start]This was likely due to a lack of high-resolution imagery for Agra or restrictions in the free-tier plan.
-        * [cite_start]Copernicus (Sentinel-2): Provided imagery at 10m resolution, which was too coarse to identify individual houses (houses appeared as 1-2 pixels).
-        * [cite_start]Zoom Earth: The imagery was not clear enough at maximum zoom for Agra.
-        * [cite_start]Bhuvan (ISRO): High-resolution imagery (e.g., Cartosat) was either unavailable or too unclear to use.
-        * [cite_start]OpenAerialMap: No suitable imagery was found for the location.
-    * [cite_start]**Solution**: Reverted to using a locally saved image placed in the `images/` directory (e.g., `27.81_78.8667.png`). As an alternative, a sample image from San Francisco (coordinates 37.7749, -122.4194) can be used to demonstrate the tool's functionality, saved as `images/37.7749_-122.4194.png`.
+        * MapTiler: Encountered a `404 Client Error: Not Found`, even after correcting the URL structure. [cite_start]This was likely due to a lack of high-resolution imagery for Agra or restrictions in the free-tier plan.
+        * Copernicus (Sentinel-2): Provided imagery at 10m resolution, which was too coarse to identify individual houses (houses appeared as 1-2 pixels).
+        * Zoom Earth: The imagery was not clear enough at maximum zoom for Agra.
+        * Bhuvan (ISRO): High-resolution imagery (e.g., Cartosat) was either unavailable or too unclear to use.
+        * OpenAerialMap: No suitable imagery was found for the location.
+    * **Solution**: Reverted to using a locally saved image placed in the `images/` directory (e.g., `27.81_78.8667.png`). As an alternative, a sample image from San Francisco (coordinates 37.7749, -122.4194) can be used to demonstrate the tool's functionality, saved as `images/37.7749_-122.4194.png`.
 
-2.  [cite_start]**OpenRouter API Error Issue**: Encountered a `402 Client Error: Payment Required` when calling the OpenRouter API with the GPT-4o model for image analysis.
-    * [cite_start]**Cause**: The free tier credits were exhausted due to multiple test requests, as image analysis consumes more credits than text-only requests.
+2.  **OpenRouter API Error Issue**: Encountered a `402 Client Error: Payment Required` when calling the OpenRouter API with the GPT-4o model for image analysis.
+    * **Cause**: The free tier credits were exhausted due to multiple test requests, as image analysis consumes more credits than text-only requests.
     * **Solution**:
-        * [cite_start]Recommended adding more credits to the OpenRouter account to proceed with real API calls.
-        * [cite_start]For submission purposes, optionally mocked the API response in `app2.py` to demonstrate the tool's workflow. The mock response used was:
+        * Recommended adding more credits to the OpenRouter account to proceed with real API calls.
+        * For submission purposes, optionally mocked the API response in `app2.py` to demonstrate the tool's workflow. The mock response used was:
             ```python
             def detect_rooftop(image):
                 mock_response = {
@@ -66,24 +66,24 @@
 
 ## Final Implementation
 
-[cite_start]After facing the challenges above, the final implementation used a locally saved image (e.g., `27.81_78.8667.png`) instead of fetching satellite imagery dynamically. The `app2.py` script was updated to load the image from the `images/` directory, and the OpenRouter API call was optionally mocked to bypass the 402 error. [cite_start]The Gradio interface allows users to input coordinates (e.g., 27.81, 78.8667) and an electricity rate (e.g., 0.104 $/kWh), and the tool displays the image along with a detailed analysis, including rooftop area, solar potential, and recommendations.
+After facing the challenges above, the final implementation used a locally saved image (e.g., `27.81_78.8667.png`) instead of fetching satellite imagery dynamically. The `app2.py` script was updated to load the image from the `images/` directory, and the OpenRouter API call was optionally mocked to bypass the 402 error. The Gradio interface allows users to input coordinates (e.g., 27.81, 78.8667) and an electricity rate (e.g., 0.104 $/kWh), and the tool displays the image along with a detailed analysis, including rooftop area, solar potential, and recommendations.
 
-[cite_start]The tool calculates solar potential based on the rooftop area (e.g., 120 m² from the mock response), assuming a solar efficiency of 20% (200 W/m²), and provides metrics like solar potential in kW, number of panels, annual energy production, installation cost, annual savings, and payback period. [cite_start]It also generates recommendations on solar panel technology, installation process, maintenance, cost analysis, industry regulations, and market trends.
+The tool calculates solar potential based on the rooftop area (e.g., 120 m² from the mock response), assuming a solar efficiency of 20% (200 W/m²), and provides metrics like solar potential in kW, number of panels, annual energy production, installation cost, annual savings, and payback period. It also generates recommendations on solar panel technology, installation process, maintenance, cost analysis, industry regulations, and market trends.
 
 ## Future Improvements
 
-* [cite_start]**Alternative Imagery Sources**: Integrate with other APIs, such as the Google Maps API, if budget permits, or explore using drone imagery for better resolution.
-* [cite_start]**Cost Optimization**: Use lower-cost vision models on OpenRouter (e.g., LLAVA-13B) to reduce credit usage while still performing image analysis.
-* [cite_start]**Enhanced Analysis**: Incorporate real solar irradiance data based on the location (e.g., using the NASA POWER API) to provide more accurate energy production estimates.
-* [cite_start]**Image Preprocessing**: Add image enhancement techniques, such as contrast adjustment, to improve the accuracy of LLM detection for low-quality images.
+* **Alternative Imagery Sources**: Integrate with other APIs, such as the Google Maps API, if budget permits, or explore using drone imagery for better resolution.
+* **Cost Optimization**: Use lower-cost vision models on OpenRouter (e.g., LLAVA-13B) to reduce credit usage while still performing image analysis.
+* **Enhanced Analysis**: Incorporate real solar irradiance data based on the location (e.g., using the NASA POWER API) to provide more accurate energy production estimates.
+* **Image Preprocessing**: Add image enhancement techniques, such as contrast adjustment, to improve the accuracy of LLM detection for low-quality images.
 
 ## Project Outcome
 
-[cite_start]The project was successfully completed despite the challenges, demonstrating the tool's functionality using a locally saved image and a mocked API response (if credits were unavailable). [cite_start]The final deliverable includes the `app2.py` script, an `images/` directory with the satellite image, and this documentation, ready for submission as part of the internship project. [cite_start]The tool showcases the potential of AI in the solar industry, even with the limitations encountered during development.
+The project was successfully completed despite the challenges, demonstrating the tool's functionality using a locally saved image and a mocked API response (if credits were unavailable). The final deliverable includes the `app2.py` script, an `images/` directory with the satellite image, and this documentation, ready for submission as part of the internship project. The tool showcases the potential of AI in the solar industry, even with the limitations encountered during development.
 
 ## Instructions for Use
 
-[cite_start]Copy the entire content above into a file (e.g., `README.txt`) in your project directory (`Solar_Industry_AI/`).
+Copy the entire content above into a file (e.g., `README.txt`) in your project directory (`Solar_Industry_AI/`).
 
 ### Project Structure
 
